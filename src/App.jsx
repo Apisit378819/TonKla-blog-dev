@@ -32,7 +32,7 @@ function HeroSection() {
         <img
           className="h-[530px] object-cover rounded-lg shadow-lg lg:w-1/3 mx-4 mb-8 lg:mb-0"
           src=""
-          alt="Person with a cat"
+          alt=""
         />
         <div className="lg:w-1/3 lg:pl-8">
           <h2 className="text-xl font-semibold mb-2">-Author</h2>
