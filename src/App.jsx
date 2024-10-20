@@ -6,10 +6,19 @@ import "./App.css";
 function NavBar() {
   return (
     <nav className="flex items-center justify-between py-4 px-8 bg-white border-b">
-      <a href="#" className="text-gray-900">hh.</a>
+      <a href="#" className="text-gray-900">
+        hh.
+      </a>
       <div className="hidden md:flex space-x-4">
-        <a href="#" className="px-9 py-2  rounded-full border">Login</a>
-        <a href="#" className="px-8 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-700 transition-colors">Sign up</a>
+        <a href="#" className="px-9 py-2  rounded-full border">
+          Login
+        </a>
+        <a
+          href="#"
+          className="px-8 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-700 transition-colors"
+        >
+          Sign up
+        </a>
       </div>
     </nav>
   );
@@ -30,8 +39,8 @@ function HeroSection() {
           </p>
         </div>
         <img
-          className="h-[530px] object-cover rounded-lg shadow-lg lg:w-1/3 mx-4 mb-8 lg:mb-0"
-          src=""
+          className="w-full h-[530px] object-cover rounded-lg shadow-lg mx-4 mb-8 lg:w-1/3  lg:mb-0"
+          src="https://st2.depositphotos.com/3904951/8925/v/380/depositphotos_89250312-stock-illustration-photo-picture-web-icon-in.jpg"
           alt=""
         />
         <div className="lg:w-1/3 lg:pl-8">
@@ -51,16 +60,51 @@ function HeroSection() {
     </main>
   );
 }
-
-
+function SearchBar() {
+  return (
+    <div className="">
+      <div className="text-2xl py-2 px-8 font-semibold mb-2">
+        <h1>Latest articles</h1>
+      </div>
+      <div className="flex-col py-4 px-8 bg-[#EFEEEB]">
+        <input type="text" placeholder="Search" className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full"/>
+        <h3>Category</h3>
+        <input type="text" placeholder="Highligth" className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full"/>
+      </div>
+    </div>
+  );
+}
+function ConteanBox() {
+  return(
+    <div className="container flex flex-col items-center  px-4 py-4"> 
+        <img src="https://st2.depositphotos.com/3904951/8925/v/380/depositphotos_89250312-stock-illustration-photo-picture-web-icon-in.jpg" alt="" className="w-full h-[212px] object-cover rounded-lg shadow-lg mx-4 mb-8"/>
+      <div>
+        <div className="w-14 h-8 px-3 py-1 rounded-full bg-[#D7F2E9]">
+          <p className="text-[#12B279] font-medium">Cat</p>
+        </div>
+        <a href="#" className="text-xl font-semibold">Understanding Cat Behavior: Why Your Feline Friend Acts the Way They Do</a>
+        <p className="text-gray-500 my-2">Dive into the curious world of cat behavior, exploring why cats knead, purr, and chase imag</p>
+        <div className="flex items-center justify-between w-[285px]">
+          <div className="flex">
+            <img src="https://st2.depositphotos.com/3904951/8925/v/380/depositphotos_89250312-stock-illustration-photo-picture-web-icon-in.jpg" alt="" className="w-6 h-6 rounded-full"/>
+            <p>Thompson P.</p>
+          </div>
+            <p>11 September 2024</p>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 function App() {
   return (
     <>
-      <NavBar/>
-      <HeroSection/>
+      <NavBar />
+      <HeroSection />
+      <SearchBar />
+      <ConteanBox/>
     </>
   );
-};
+}
 
 export default App;
