@@ -6,10 +6,19 @@ import "./App.css";
 function NavBar() {
   return (
     <nav className="flex items-center justify-between py-4 px-8 bg-white border-b">
-      <a href="#" className="text-gray-900">hh.</a>
+      <a href="#" className="text-gray-900">
+        hh.
+      </a>
       <div className="hidden md:flex space-x-4">
-        <a href="#" className="px-9 py-2  rounded-full border">Login</a>
-        <a href="#" className="px-8 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-700 transition-colors">Sign up</a>
+        <a href="#" className="px-9 py-2  rounded-full border">
+          Login
+        </a>
+        <a
+          href="#"
+          className="px-8 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-700 transition-colors"
+        >
+          Sign up
+        </a>
       </div>
     </nav>
   );
@@ -51,16 +60,29 @@ function HeroSection() {
     </main>
   );
 }
-
-
+function SearchBar() {
+  return (
+    <div className="container gap-4 mx-auto">
+      <div className="text-2xl py-2 px-4 font-semibold mb-2">
+        <h1>Latest articles</h1>
+      </div>
+      <div className="flex-col py-4 px-4 bg-[#EFEEEB]">
+        <input type="text" placeholder="Search" className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full"/>
+        <h3>Category</h3>
+        <input type="text" placeholder="Highligth" className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full"/>
+      </div>
+    </div>
+  );
+}
 
 function App() {
   return (
     <>
-      <NavBar/>
-      <HeroSection/>
+      <NavBar />
+      <HeroSection />
+      <SearchBar />
     </>
   );
-};
+}
 
 export default App;
