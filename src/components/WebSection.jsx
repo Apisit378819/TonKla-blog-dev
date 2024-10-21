@@ -59,22 +59,30 @@ export  function HeroSection() {
   }
 export  function SearchBar() {
     return (
-      <div className="">
+      <div className="lg:container lg:px-4  lg:py-16 lg:mx-auto">
         <div className="text-2xl py-2 px-8 font-semibold mb-2">
           <h1>Latest articles</h1>
         </div>
-        <div className="flex-col py-4 px-8 bg-[#EFEEEB]">
-          <input type="text" placeholder="Search" className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full"/>
-          <h3>Category</h3>
-          <input type="text" placeholder="Highligth" className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full"/>
+        <div className="flex-col py-4 px-8 bg-[#EFEEEB] lg:flex lg:flex-row lg:justify-between">
+        <div className='lg:flex lg:flex-row items-center lg:justify-between lg:w-1/3'>
+            <a href="#">Highlight</a>
+            <a href="#">Cat</a>
+            <a href="#">Inspiration</a>
+            <a href="#">General</a>
         </div>
+          <input type="text" placeholder="Search" className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full lg:w-80"/>
+          <h3 className='lg:hidden'>Category</h3>
+          <input type="text" placeholder="Highligth" className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full lg:hidden"/>
+        </div>
+        
       </div>
     );
   }
 export  function ConteanBox() {
     return(
-      <div className="container flex flex-col items-center  px-4 py-4"> 
-          <img src="https://st2.depositphotos.com/3904951/8925/v/380/depositphotos_89250312-stock-illustration-photo-picture-web-icon-in.jpg" alt="" className="w-full h-[212px] object-cover rounded-lg shadow-lg mx-4 mb-8"/>
+    <div className='lg:container lg:px-4  lg:py-16 lg:mx-auto'>
+      <div className="container flex flex-col items-center  px-4 py-4 "> 
+          <img src="https://st2.depositphotos.com/3904951/8925/v/380/depositphotos_89250312-stock-illustration-photo-picture-web-icon-in.jpg" alt="" className="w-full h-[212px] object-cover rounded-lg shadow-lg mx-4 mb-8 lg:h-[360px] "/>
         <div>
           <div className="w-14 h-8 px-3 py-1 rounded-full bg-[#D7F2E9]">
             <p className="text-[#12B279] font-medium">Cat</p>
@@ -91,18 +99,21 @@ export  function ConteanBox() {
         </div>
         <a href="#" className="text-base font-normal py-8 underline">View more</a>
       </div>
+      </div>
     )
   }
 export  function Footer() {
     return(
-      <footer className="bg-[#EFEEEB] p-8 flex flex-col items-center">
-        <div className="flex justify-between items-center w-56 gap-6 ">
+      <footer className="bg-[#EFEEEB] p-8 flex flex-col items-center ">
+        <div className='lg:flex lg:flex-row lg:justify-between lg:container lg:px-4 '> 
+        <div className="flex justify-between items-center w-80 gap-6 ">
           <span className="font-medium">Get in touch</span>
           <a href="#"><Sparkle /></a>
           <a href="#"> <Github/></a>
-          <a href="#">Github</a>
+          <a href="#"><Sparkle/></a>
         </div>
-        <a href="#" className="hover:text-muted-foreground font-medium underline pt-6">Home page</a>
+        <a href="#" className="hover:text-muted-foreground font-medium underline pt-6 ">Home page</a>
+        </div>
     </footer>
     )
   }
