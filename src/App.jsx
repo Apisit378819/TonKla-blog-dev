@@ -92,17 +92,32 @@ function ConteanBox() {
             <p>11 September 2024</p>
         </div>
       </div>
+      <a href="#" className="text-base font-normal py-8 underline">View more</a>
     </div>
   )
 }
-
+function Footer() {
+  return(
+    <footer className="bg-[#EFEEEB] p-8 flex flex-col items-center">
+      <div className="flex justify-between items-center w-56 gap-6 ">
+        <span className="font-medium">Get in touch</span>
+        <a href="#">in</a>
+        <a href="#">git</a>
+        <a href="#">goo</a>
+      </div>
+      <a href="#" className="hover:text-muted-foreground font-medium underline pt-6">Home page</a>
+  </footer>
+  
+  )
+}
 function App() {
   return (
     <>
       <NavBar />
       <HeroSection />
       <SearchBar />
-      <ConteanBox/>
+      <ConteanBox />
+      <Footer />
     </>
   );
 }
