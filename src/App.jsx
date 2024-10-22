@@ -1,5 +1,5 @@
 import "./App.css";
-import { NavBar , HeroSection , SearchBar , ConteanBox , Footer } from "./components/WebSection"
+import { NavBar , HeroSection , SearchBar , ConteanBoxSupport , Footer } from "./components/WebSection"
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
       <NavBar />
       <HeroSection />
       <SearchBar />
-      <ConteanBox />
+      <ConteanBoxSupport />
       <Footer />
     </>
   );
