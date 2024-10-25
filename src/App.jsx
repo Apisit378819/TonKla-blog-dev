@@ -7,7 +7,7 @@ function App() {
       <NavBar />
       <HeroSection />
       <SearchBar />
-      <ConteanBoxSupport />
+      {/* <ConteanBoxSupport /> */}
       <Footer />
     </>
   );

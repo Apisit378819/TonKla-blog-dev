@@ -1,5 +1,6 @@
 import { Sparkle, Github, Laugh, Search } from "lucide-react";
 import blogPosts from "../data/blogPosts";
+import { useState } from "react";
 
 export function NavBar() {
   return (
@@ -58,58 +59,79 @@ export function HeroSection() {
     </main>
   );
 }
+
 export function SearchBar() {
+  const [category, setcategory] = useState();
+  const clikA = () => {
+    setcategory("Highlight");
+  };
+  const clikB = () => {
+    setcategory("Cat");
+  };
+  const clikC = () => {
+    setcategory("Inspiration");
+  };
+  const clikD = () => {
+    setcategory("General");
+  };
   return (
     <div className="lg:container lg:px-4  lg:py-16 lg:mx-auto">
       <div className="text-2xl py-2 px-8 font-semibold mb-2">
         <h1>Latest articles</h1>
       </div>
       <div className="flex-col py-4 px-8 bg-[#EFEEEB] lg:flex lg:flex-row lg:justify-between">
-        <div className="lg:flex lg:flex-row items-center lg:justify-between lg:w-1/3">
-          <a href="#">Highlight</a>
-          <a href="#">Cat</a>
-          <a href="#">Inspiration</a>
-          <a href="#">General</a>
+        <div className="lg:flex lg:flex-row items-center lg:justify-between lg:w-1/3 hidden">
+          <button className={`p-2 rounded-2xl ${category === "Highlight" ? "bg-[#DAD6D1]" : "hover:bg-[#DAD6D1]"}`} onClick={clikA} >
+            Highlight
+          </button>
+          <button className={`p-2 rounded-2xl ${category === "Cat" ? "bg-[#DAD6D1]" : "hover:bg-[#DAD6D1]"}`} onClick={clikB}>
+            Cat
+          </button>
+          <button className={`p-2 rounded-2xl ${category === "Inspiration" ? "bg-[#DAD6D1]" : "hover:bg-[#DAD6D1]"}`} onClick={clikC}>
+            Inspiration
+          </button>
+          <button className={`p-2 rounded-2xl ${category === "General" ? "bg-[#DAD6D1]" : "hover:bg-[#DAD6D1]"}`} onClick={clikD}>
+            General
+          </button>
         </div>
         <div className="relative">
-        <input
-          type="text"
-          placeholder="Search"
-          className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full lg:w-80"
-        />
-        <Search className="absolute right-3 top-2 size-5"/>
+          <input
+            type="text"
+            placeholder="Search"
+            className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full lg:w-80"
+          />
+          <Search className="absolute right-3 top-2 size-5" />
         </div>
         <h3 className="lg:hidden">Category</h3>
-        <select className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full lg:w-80 lg:hidden">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
+        <select className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full lg:w-80 lg:hidden"  value={category} onChange={(event) => setcategory(event.target.value)}>
+          <option value="Highlight" >Highlight</option>
+          <option value="Cat" >Cat</option>
+          <option value="Inspiration" >Inspiration</option>
+          <option value="General" >General</option>
         </select>
       </div>
+      {blogPosts.map((setx) => {return setx.category === category ? (<ConteanBoxSupport Detailsimage={setx.image} Detailscategory={setx.category} Detailstitle={setx.title} DetailsDescription={setx.description} Detailsauthor={setx.author} Detailsdate={setx.date}/>) : null})}
     </div>
   );
 }
-export function ConteanBox() {
+export function ConteanBox({Detailsimage , Detailscategory , Detailstitle , DetailsDescription , Detailsauthor , Detailsdate}) {
   return (
     <>
-      {blogPosts.map((item, index) => {
-        return (
-          <div key={index} className="sm:w-3/4 lg:w-full mx-auto">
+          <div className="sm:w-3/4 lg:w-full mx-auto">
             <div className="container flex flex-col items-center  px-4 py-4 ">
               <img
-                src={item.image}
+                src={Detailsimage}
                 alt=""
                 className="w-full h-[212px] object-cover rounded-lg shadow-lg mx-4 mb-8 lg:h-[360px] "
               />
               <div>
                 <div className="w-14 h-8 px-3 py-1 rounded-full bg-[#D7F2E9]">
-                  <p className="text-[#12B279] font-medium">{item.category}</p>
+                  <p className="text-[#12B279] font-medium">{Detailscategory}</p>
                 </div>
                 <a href="#" className="text-xl font-semibold">
-                  {item.title}
+                  {Detailstitle}
                 </a>
-                <p className="text-gray-500 my-2">{item.description}</p>
+                <p className="text-gray-500 my-2">{DetailsDescription}</p>
                 <div className="flex items-center justify-between w-[285px]">
                   <div className="flex">
                     <img
@@ -117,23 +139,21 @@ export function ConteanBox() {
                       alt=""
                       className="w-6 h-6 rounded-full"
                     />
-                    <p>{item.author}</p>
+                    <p>{Detailsauthor}</p>
                   </div>
-                  <p>{blogPosts[0].date}</p>
+                  <p>{Detailsdate}</p>
                 </div>
               </div>
             </div>
           </div>
-        );
-      })}
     </>
   );
 }
-export function ConteanBoxSupport() {
+export function ConteanBoxSupport({Detailsimage , Detailscategory , Detailstitle , DetailsDescription , Detailsauthor , Detailsdate}) {
   return (
     <>
       <div className="lg:grid lg:grid-cols-2 lg:container lg:mx-auto">
-        <ConteanBox />
+        <ConteanBox Detailsimage={Detailsimage} Detailscategory={Detailscategory} Detailstitle={Detailstitle} DetailsDescription={DetailsDescription} Detailsauthor={Detailsauthor} Detailsdate={Detailsdate} />
       </div>
       <div className="flex flex-row justify-center items-center  px-4 py-4">
         <a
