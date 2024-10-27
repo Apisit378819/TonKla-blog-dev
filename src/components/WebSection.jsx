@@ -1,5 +1,6 @@
 import { Sparkle, Github, Laugh, Search } from "lucide-react";
 import blogPosts from "../data/blogPosts";
+import { useState } from "react";
 
 export function NavBar() {
   return (
@@ -59,90 +60,150 @@ export function HeroSection() {
   );
 }
 export function SearchBar() {
+  const [data, setData] = useState(blogPosts);
+  const [category, setcategory] = useState();
+  console.log(category);
+  const Highlight = () => {
+    setcategory("Highlight");
+  };
+  const Cat = () => {
+    setcategory("Cat");
+  };
+  const Inspiration = () => {
+    setcategory("Inspiration");
+  };
+  const General = () => {
+    setcategory("General");
+  };
   return (
     <div className="lg:container lg:px-4  lg:py-16 lg:mx-auto">
       <div className="text-2xl py-2 px-8 font-semibold mb-2">
         <h1>Latest articles</h1>
       </div>
       <div className="flex-col py-4 px-8 bg-[#EFEEEB] lg:flex lg:flex-row lg:justify-between">
-        <div className="lg:flex lg:flex-row items-center lg:justify-between lg:w-1/3">
-          <a href="#">Highlight</a>
-          <a href="#">Cat</a>
-          <a href="#">Inspiration</a>
-          <a href="#">General</a>
+        <div className="lg:flex lg:flex-row items-center lg:justify-between lg:w-1/3 hidden">
+          <button
+            className={`p-2 rounded-2xl ${
+              category === "Highlight" ? "bg-[#DAD6D1]" : "hover:bg-[#DAD6D1]"
+            }`}
+            onClick={Highlight}
+          >
+            Highlight
+          </button>
+          <button
+            className={`p-2 rounded-2xl ${
+              category === "Cat" ? "bg-[#DAD6D1]" : "hover:bg-[#DAD6D1]"
+            }`}
+            onClick={Cat}
+          >
+            Cat
+          </button>
+          <button
+            className={`p-2 rounded-2xl ${
+              category === "Inspiration" ? "bg-[#DAD6D1]" : "hover:bg-[#DAD6D1]"
+            }`}
+            onClick={Inspiration}
+          >
+            Inspiration
+          </button>
+          <button
+            className={`p-2 rounded-2xl ${
+              category === "General" ? "bg-[#DAD6D1]" : "hover:bg-[#DAD6D1]"
+            }`}
+            onClick={General}
+          >
+            General
+          </button>
         </div>
         <div className="relative">
-        <input
-          type="text"
-          placeholder="Search"
-          className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full lg:w-80"
-        />
-        <Search className="absolute right-3 top-2 size-5"/>
+          <input
+            type="text"
+            placeholder="Search"
+            className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full lg:w-80"
+          />
+          <Search className="absolute right-3 top-2 size-5" />
         </div>
         <h3 className="lg:hidden">Category</h3>
-        <select className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full lg:w-80 lg:hidden">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
+        <select
+          className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full lg:w-80 lg:hidden"
+          value={category}
+          onChange={(event) => setcategory(event.target.value)}
+        >
+          <option value="Highlight">Highlight</option>
+          <option value="Cat">Cat</option>
+          <option value="Inspiration">Inspiration</option>
+          <option value="General">General</option>
         </select>
       </div>
+      <div className="lg:grid lg:grid-cols-2 lg:container lg:mx-auto">
+      {category === "Highlight"
+        ? data.map((item) => {
+            return (
+              <ConteanBox
+                Detailsimage={item.image}
+                Detailscategory={item.category}
+                Detailstitle={item.title}
+                DetailsDescription={item.description}
+                Detailsauthor={item.author}
+                Detailsdate={item.date}
+              />
+            );
+          })
+        : data.map((item) => {
+            return item.category === category  && (
+              <ConteanBox
+                Detailsimage={item.image}
+                Detailscategory={item.category} 
+                Detailstitle={item.title}
+                DetailsDescription={item.description}
+                Detailsauthor={item.author}
+                Detailsdate={item.date}
+              />
+            );
+          })}
+    </div>
     </div>
   );
 }
-export function ConteanBox() {
+export function ConteanBox({
+  Detailsimage,
+  Detailscategory,
+  Detailstitle,
+  DetailsDescription,
+  Detailsauthor,
+  Detailsdate,
+}) {
   return (
     <>
-      {blogPosts.map((item, index) => {
-        return (
-          <div key={index} className="sm:w-3/4 lg:w-full mx-auto">
-            <div className="container flex flex-col items-center  px-4 py-4 ">
-              <img
-                src={item.image}
-                alt=""
-                className="w-full h-[212px] object-cover rounded-lg shadow-lg mx-4 mb-8 lg:h-[360px] "
-              />
-              <div>
-                <div className="w-14 h-8 px-3 py-1 rounded-full bg-[#D7F2E9]">
-                  <p className="text-[#12B279] font-medium">{item.category}</p>
+        <div className="sm:w-3/4 lg:w-full mx-auto">
+          <div className="container flex flex-col items-center  px-4 py-4 ">
+            <img
+              src={Detailsimage}
+              alt=""
+              className="w-full h-[212px] object-cover rounded-lg shadow-lg mx-4 mb-8 lg:h-[360px] "
+            />
+            <div>
+              <div className="w-14 h-8 px-3 py-1 rounded-full bg-[#D7F2E9]">
+                <p className="text-[#12B279] font-medium">{Detailscategory}</p>
+              </div>
+              <a href="#" className="text-xl font-semibold">
+                {Detailstitle}
+              </a>
+              <p className="text-gray-500 my-2">{DetailsDescription}</p>
+              <div className="flex items-center justify-between w-[285px]">
+                <div className="flex">
+                  <img
+                    src="https://st2.depositphotos.com/3904951/8925/v/380/depositphotos_89250312-stock-illustration-photo-picture-web-icon-in.jpg"
+                    alt=""
+                    className="w-6 h-6 rounded-full"
+                  />
+                  <p>{Detailsauthor}</p>
                 </div>
-                <a href="#" className="text-xl font-semibold">
-                  {item.title}
-                </a>
-                <p className="text-gray-500 my-2">{item.description}</p>
-                <div className="flex items-center justify-between w-[285px]">
-                  <div className="flex">
-                    <img
-                      src="https://st2.depositphotos.com/3904951/8925/v/380/depositphotos_89250312-stock-illustration-photo-picture-web-icon-in.jpg"
-                      alt=""
-                      className="w-6 h-6 rounded-full"
-                    />
-                    <p>{item.author}</p>
-                  </div>
-                  <p>{blogPosts[0].date}</p>
-                </div>
+                <p>{Detailsdate}</p>
               </div>
             </div>
           </div>
-        );
-      })}
-    </>
-  );
-}
-export function ConteanBoxSupport() {
-  return (
-    <>
-      <div className="lg:grid lg:grid-cols-2 lg:container lg:mx-auto">
-        <ConteanBox />
-      </div>
-      <div className="flex flex-row justify-center items-center  px-4 py-4">
-        <a
-          href="#"
-          className=" text-base font-normal underline lg:w-auto lg:mx-auto"
-        >
-          View more
-        </a>
-      </div>
+        </div>
     </>
   );
 }
