@@ -1,7 +1,8 @@
 import { Sparkle, Github, Laugh, Search } from "lucide-react";
 import blogPosts from "../data/blogPosts";
 import { useState } from "react";
-
+import { useEffect } from "react";
+import axios from "axios";
 export function NavBar() {
   return (
     <nav className="flex items-center justify-between py-4 px-8 bg-white border-b">
@@ -60,9 +61,25 @@ export function HeroSection() {
   );
 }
 export function SearchBar() {
-  const [data, setData] = useState(blogPosts);
   const [category, setcategory] = useState();
-  console.log(category);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const response = await axios.get(
+        `https://blog-post-project-api.vercel.app/posts`
+      );
+      setPosts(response.data.posts);
+      console.log(response.data.posts)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const Highlight = () => {
     setcategory("Highlight");
   };
@@ -137,7 +154,7 @@ export function SearchBar() {
       </div>
       <div className="lg:grid lg:grid-cols-2 lg:container lg:mx-auto">
       {category === "Highlight"
-        ? data.map((item) => {
+        ? posts.map((item) => {
             return (
               <ConteanBox
                 Detailsimage={item.image}
@@ -149,7 +166,7 @@ export function SearchBar() {
               />
             );
           })
-        : data.map((item) => {
+        : posts.map((item) => {
             return item.category === category  && (
               <ConteanBox
                 Detailsimage={item.image}
