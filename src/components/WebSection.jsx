@@ -1,8 +1,10 @@
 import { Sparkle, Github, Laugh, Search } from "lucide-react";
-import blogPosts from "../data/blogPosts";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+// import ReactLoading from 'react-loading';
+import { Spain } from "./Spain";
+
 export function NavBar() {
   return (
     <nav className="flex items-center justify-between py-4 px-8 bg-white border-b">
@@ -61,8 +63,10 @@ export function HeroSection() {
   );
 }
 export function SearchBar() {
-  const [category, setcategory] = useState();
+  const [category, setcategory] = useState("Highlight");
   const [posts, setPosts] = useState([]);
+  const [loading , setLoading] = useState(true)
+
 
   useEffect(() => {
     fetchPosts();
@@ -70,10 +74,10 @@ export function SearchBar() {
 
   const fetchPosts = async () => {
     try {
+      setLoading(false)
       const response = await axios.get(
-        `https://blog-post-project-api.vercel.app/posts`
-      );
-      setPosts(response.data.posts);
+        `https://blog-post-project-api.vercel.app/posts?limit=10`);
+      setPosts(response.data.posts); // หลังจากดึงข้อมูลจาก Api มาแล้วก็ใช้ setPosts ดึงข้อมูลให้ posts ไปใช้ต่อ
       console.log(response.data.posts)
     } catch (error) {
       console.log(error);
@@ -179,6 +183,9 @@ export function SearchBar() {
             );
           })}
     </div>
+    {/* <ReactLoading type={"spin"} color={"black"} height={300} width={150}/> */}
+    {/* <Spain /> */}
+    {loading ? <Spain /> : <button>View more</button>}
     </div>
   );
 }
