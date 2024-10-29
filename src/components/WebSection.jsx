@@ -1,6 +1,9 @@
 import { Sparkle, Github, Laugh, Search } from "lucide-react";
-import blogPosts from "../data/blogPosts";
 import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+// import ReactLoading from 'react-loading';
+import { Spain } from "./Spain";
 
 export function NavBar() {
   return (
@@ -60,9 +63,27 @@ export function HeroSection() {
   );
 }
 export function SearchBar() {
-  const [data, setData] = useState(blogPosts);
-  const [category, setcategory] = useState();
-  console.log(category);
+  const [category, setcategory] = useState("Highlight");
+  const [posts, setPosts] = useState([]);
+  const [loading , setLoading] = useState(true)
+
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      setLoading(false)
+      const response = await axios.get(
+        `https://blog-post-project-api.vercel.app/posts?limit=10`);
+      setPosts(response.data.posts); // หลังจากดึงข้อมูลจาก Api มาแล้วก็ใช้ setPosts ดึงข้อมูลให้ posts ไปใช้ต่อ
+      console.log(response.data.posts)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const Highlight = () => {
     setcategory("Highlight");
   };
@@ -137,7 +158,7 @@ export function SearchBar() {
       </div>
       <div className="lg:grid lg:grid-cols-2 lg:container lg:mx-auto">
       {category === "Highlight"
-        ? data.map((item) => {
+        ? posts.map((item) => {
             return (
               <ConteanBox
                 Detailsimage={item.image}
@@ -149,7 +170,7 @@ export function SearchBar() {
               />
             );
           })
-        : data.map((item) => {
+        : posts.map((item) => {
             return item.category === category  && (
               <ConteanBox
                 Detailsimage={item.image}
@@ -162,6 +183,9 @@ export function SearchBar() {
             );
           })}
     </div>
+    {/* <ReactLoading type={"spin"} color={"black"} height={300} width={150}/> */}
+    {/* <Spain /> */}
+    {loading ? <Spain /> : <button>View more</button>}
     </div>
   );
 }
