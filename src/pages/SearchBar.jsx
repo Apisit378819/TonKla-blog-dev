@@ -1,4 +1,4 @@
-import {  Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { ContentBox } from "./content";
@@ -66,21 +66,37 @@ import { Spain } from "./UI/Spain";
 export function SearchBar() {
   const [category, setcategory] = useState("Highlight");
   const [posts, setPosts] = useState([]);
-  const [loading , setLoading] = useState(true)
+  const [loading, setLoading] = useState(false);
+  const [postView, setPostView] = useState(6);
+  const [search, setSearch] = useState("");
+
+  const SearchInput = (event) => {
+    setSearch(event.target.value)
+    console.log(search)
+  };
+
+  const postViewPush = () => {
+    setPostView(postView + 2);
+    console.log(loading);
+  };
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [postView , search]);
 
   const fetchPosts = async () => {
     try {
-      setLoading(false)
+      setLoading(true);
       const response = await axios.get(
-        `https://blog-post-project-api.vercel.app/posts?limit=10`);
-      setPosts(response.data.posts); // หลังจากดึงข้อมูลจาก Api มาแล้วก็ใช้ setPosts ดึงข้อมูลให้ posts ไปใช้ต่อ
-      console.log(response.data.posts)
+        `https://blog-post-project-api.vercel.app/posts?limit=${postView}&keyword=${search}`
+      );
+      setPosts(response.data.posts);
+      // หลังจากดึงข้อมูลจาก Api มาแล้วก็ใช้ setPosts ดึงข้อมูลให้ posts ไปใช้ต่อ
+      setLoading(false);
+      console.log(response.data.posts);
     } catch (error) {
       console.log(error);
+      setLoading(true);
     }
   };
 
@@ -141,6 +157,7 @@ export function SearchBar() {
             type="text"
             placeholder="Search"
             className="pt-2 pr-2 pb-2 pl-3 rounded-lg w-full lg:w-80"
+            onChange={SearchInput}
           />
           <Search className="absolute right-3 top-2 size-5" />
         </div>
@@ -157,33 +174,37 @@ export function SearchBar() {
         </select>
       </div>
       <div className="lg:grid lg:grid-cols-2 lg:container lg:mx-auto">
-      {category === "Highlight"
-        ? posts.map((item) => {
-            return (
-              <ContentBox
-                Detailsimage={item.image}
-                Detailscategory={item.category}
-                Detailstitle={item.title}
-                DetailsDescription={item.description}
-                Detailsauthor={item.author}
-                Detailsdate={item.date}
-              />
-            );
-          })
-        : posts.map((item) => {
-            return item.category === category  && (
-              <ContentBox
-                Detailsimage={item.image}
-                Detailscategory={item.category} 
-                Detailstitle={item.title}
-                DetailsDescription={item.description}
-                Detailsauthor={item.author}
-                Detailsdate={item.date}
-              />
-            );
-          })}
-    </div>
-    {loading ? <Spain /> : <button>View more</button>}
+        {category === "Highlight"
+          ? posts.map((item) => {
+              return (
+                <ContentBox
+                  Detailsimage={item.image}
+                  Detailscategory={item.category}
+                  Detailstitle={item.title}
+                  DetailsDescription={item.description}
+                  Detailsauthor={item.author}
+                  Detailsdate={item.date}
+                />
+              );
+            })
+          : posts.map((item) => {
+              return (
+                item.category === category && (
+                  <ContentBox
+                    Detailsimage={item.image}
+                    Detailscategory={item.category}
+                    Detailstitle={item.title}
+                    DetailsDescription={item.description}
+                    Detailsauthor={item.author}
+                    Detailsdate={item.date}
+                  />
+                )
+              );
+            })}
+      </div>
+      <div className="w-auto flex justify-center items-center">
+      {loading ? <Spain/> : <button  onClick={postViewPush}>ViewMore</button>}
+      </div>
     </div>
   );
 }
