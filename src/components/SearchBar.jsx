@@ -5,6 +5,8 @@ import { ContentBox } from "./content";
 import axios from "axios";
 // import ReactLoading from 'react-loading';
 import { Spain } from "./UI/Spain";
+import { useNavigate } from "react-router-dom";
+
 
 // export function NavBar() {
 //   return (
@@ -70,6 +72,11 @@ export function SearchBar() {
   const [postView, setPostView] = useState(6);
   const [search, setSearch] = useState("");
 
+  const navigate = useNavigate()
+  const viewPostPageClik = (id) => {
+    navigate(`/View/${id}`)
+  }
+
   const SearchInput = (event) => {
     setSearch(event.target.value)
     console.log(search)
@@ -83,6 +90,7 @@ export function SearchBar() {
   useEffect(() => {
     fetchPosts();
   }, [postView , search]);
+
 
   const fetchPosts = async () => {
     try {
@@ -184,6 +192,8 @@ export function SearchBar() {
                   DetailsDescription={item.description}
                   Detailsauthor={item.author}
                   Detailsdate={item.date}
+                  DetailsId={item.id}
+                  viewPostPage={viewPostPageClik}
                 />
               );
             })
@@ -197,6 +207,8 @@ export function SearchBar() {
                     DetailsDescription={item.description}
                     Detailsauthor={item.author}
                     Detailsdate={item.date}
+                    DetailsId={item.id}
+                    viewPostPage={viewPostPageClik}
                   />
                 )
               );

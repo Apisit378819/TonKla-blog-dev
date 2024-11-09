@@ -1,3 +1,4 @@
+import TK from '../assets/TK.jpg';
 export function HeroSection() {
     return (
       <main className="container px-4 py-8 lg:py-16 mx-auto">
@@ -15,7 +16,7 @@ export function HeroSection() {
           </div>
           <img
             className="w-full h-[530px] object-cover rounded-lg shadow-lg mx-4 mb-8 lg:w-1/3  lg:mb-0"
-            src="https://st2.depositphotos.com/3904951/8925/v/380/depositphotos_89250312-stock-illustration-photo-picture-web-icon-in.jpg"
+            src={TK}
             alt=""
           />
           <div className="lg:w-1/3 lg:pl-8">
