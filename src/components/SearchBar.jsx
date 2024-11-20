@@ -185,6 +185,7 @@ export function SearchBar() {
         {category === "Highlight"
           ? posts.map((item) => {
               return (
+                <div key={item.id}>
                 <ContentBox
                   Detailsimage={item.image}
                   Detailscategory={item.category}
@@ -195,11 +196,13 @@ export function SearchBar() {
                   DetailsId={item.id}
                   viewPostPage={viewPostPageClik}
                 />
+                </div>
               );
             })
           : posts.map((item) => {
               return (
                 item.category === category && (
+                  <div key={item.id}>
                   <ContentBox
                     Detailsimage={item.image}
                     Detailscategory={item.category}
@@ -210,6 +213,7 @@ export function SearchBar() {
                     DetailsId={item.id}
                     viewPostPage={viewPostPageClik}
                   />
+                  </div>
                 )
               );
             })}
