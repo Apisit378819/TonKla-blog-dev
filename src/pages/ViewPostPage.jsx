@@ -14,10 +14,24 @@ export function PostPage() {
   const [copied, setCopied] = useState(false);
   const [comment, setComment] = useState("");
 
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copyToClipboard = () => {
+
+    const url = window.location.href; // URL of the current page
+    console.log(url);
+
+    navigator.clipboard.writeText(url)
+      .then(() => toast("Copied!", {
+        description: "This article has been copied to your clipbord",
+        action: {
+          label: "Undo",
+
+        }, style: {
+          background: 'rgb(128,128,128)',
+          color: 'white',
+
+        },
+      }))
+      .catch(() => toast('Failed to copy URL'));
   };
   console.log(dataPostpage);
 
@@ -42,9 +56,9 @@ export function PostPage() {
 
   return (
     <>
-    <div className=" flex flex-col items-center justify-center">
-      <img src={dataPostpage.image} alt="" className="container flex justify-center items-center h-[500px] " />
-      <div className="container flex flex-col justify-center items-center px-4 py-4">
+    <div className=" container lg:px-8 mx-auto">
+      <img src={dataPostpage.image} alt="" className=" w-full object-cover h-[500px]" />
+      <div className=" flex flex-col px-4 py-4">
         <div className="w-14 h-8 px-3 py-1 rounded-full bg-[#D7F2E9]">
           <p className="text-[#12B279] font-medium">{dataPostpage.category}</p>
         </div>
@@ -66,7 +80,7 @@ export function PostPage() {
             Give me a toast
           </button>
         </div>
-        <div className="max-w-2xl mx-auto p-4 space-y-6">
+        <div className="p-4 space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Smile className="w-5 h-5 text-muted-foreground" />
@@ -77,7 +91,8 @@ export function PostPage() {
                 variant="outline"
                 size="sm"
                 className="gap-2"
-                onClick={handleCopyLink}
+                onClick={copyToClipboard}
+
               >
                 {copied ? (
                   <Check className="w-4 h-4" />
