@@ -5,7 +5,10 @@ export function ContentBox({
     DetailsDescription,
     Detailsauthor,
     Detailsdate,
+    viewPostPage,
+    DetailsId
   }) {
+    console.log(viewPostPage)
     return (
       <>
           <div className="sm:w-3/4 lg:w-full mx-auto">
@@ -19,8 +22,8 @@ export function ContentBox({
                 <div className="w-14 h-8 px-3 py-1 rounded-full bg-[#D7F2E9]">
                   <p className="text-[#12B279] font-medium">{Detailscategory}</p>
                 </div>
-                <a href="#" className="text-xl font-semibold">
-                  {Detailstitle}
+                <a href="" className="text-xl font-semibold" onClick={() => viewPostPage(DetailsId)}>
+                  {Detailstitle} 
                 </a>
                 <p className="text-gray-500 my-2">{DetailsDescription}</p>
                 <div className="flex items-center justify-between w-[285px]">
