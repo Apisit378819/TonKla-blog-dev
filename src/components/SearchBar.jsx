@@ -1,7 +1,7 @@
 import { Search } from "lucide-react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { ContentBox } from "./content";
+import { ContentBox } from "./Content.jsx";
 import axios from "axios";
 // import ReactLoading from 'react-loading';
 import { Spain } from "./UI/Spain";
