@@ -5,13 +5,10 @@ export function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center">
           <div className="lg:w-1/3 mb-8 lg:mb-0 lg:pr-8">
             <h1 className="text-4xl lg:text-5xl font-bold mb-4">
-              Stay <br className="hidden lg:block" />
-              Informed, <br />
-              Stay Inspired,
+            Get started with simple coding for beginners
             </h1>
             <p className="text-lg text-gray-500">
-              Discover a World of Knowledge at Your Fingertips. Your Daily Dose of
-              Inspiration and Information.
+            This blog is designed to help everyone understand the basics of coding in a fun and relevant way. We have in-depth articles that are perfect for beginners, with detailed examples and tips to help you become a future software developer.
             </p>
           </div>
           <img
@@ -20,16 +17,10 @@ export function HeroSection() {
             alt=""
           />
           <div className="lg:w-1/3 lg:pl-8">
-            <h2 className="text-xl font-semibold mb-2">-Author</h2>
-            <h3 className="text-2xl font-bold mb-4">Thompson P.</h3>
+            <h2 className="text-xl font-semibold mb-2">Author</h2>
+            <h3 className="text-2xl font-bold mb-4">Apisit Kanna</h3>
             <p className="text-gray-500 mb-4">
-              I am a pet enthusiast and freelance writer who specializes in animal
-              behavior and care. With a deep love for cats, I enjoy sharing
-              insights on feline companionship and wellness.
-            </p>
-            <p className="text-gray-500">
-              When I&apos;m not writing, I spend time volunteering at my local
-              animal shelter, helping cats find loving homes.
+            In terms of soft content, starting from How the Digital World Works Today, the content that will become the starting point for learning how I develop problem-solving skills, project knowledge, and others through articles and teaching.
             </p>
           </div>
         </div>
