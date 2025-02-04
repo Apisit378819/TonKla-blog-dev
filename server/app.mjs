@@ -7,9 +7,9 @@ const PORT = 3000;
 
 // ✅ ใช้ CORS Middleware
 app.use(cors({
-  origin: "http://localhost:5173", // ✅ อนุญาตให้ React เรียก API ได้
-  methods: "GET,POST,PUT,DELETE",
-  allowedHeaders: "Content-Type,Authorization"
+  // origin: "http://localhost:5173", // ✅ อนุญาตให้ React เรียก API ได้
+  // methods: "GET,POST,PUT,DELETE",
+  // allowedHeaders: "Content-Type,Authorization"
 }));
 
 app.get("/", (req, res) => {

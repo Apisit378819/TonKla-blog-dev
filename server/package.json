@@ -2,12 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "app.mjs",
   "type": "module",
   "scripts": {
-    "dev": "nodemon app.js",
-    "start": "nodemon app.js",
-    "build": "npm run build"
+    "dev": "nodemon app.mjs",
+    "start": "node app.mjs",
+    "build": "vite build"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +17,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "vite": "^6.0.11"
   }
 }
