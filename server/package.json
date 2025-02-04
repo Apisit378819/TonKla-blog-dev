@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "nodemon app.mjs",
-    "dev": "nodemon app.mjs",
+    "dev": "nnode app.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
