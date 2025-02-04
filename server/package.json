@@ -13,8 +13,7 @@
     "vite": "^6.0.11"
   },
   "scripts": {
-    "start": "nodemon app.mjs",
-    "dev": "nnode app.mjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon app.mjs",
+    "start": "node app.mjs"
   }
 }
