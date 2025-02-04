@@ -5,10 +5,10 @@
   "main": "app.mjs",
   "type": "module",
   "scripts": {
-    "dev": "nodemon app.mjs",
-    "start": "node app.mjs",
-    "build": "vite build"
-  },
+  "start": "node index.js",
+  "dev": "nodemon index.js",
+  "build": "echo 'No build step needed'"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
