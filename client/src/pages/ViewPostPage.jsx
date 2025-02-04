@@ -46,7 +46,7 @@ export function PostPage() {
   const fetchPosts = async () => {
     try {
       const response = await axios.get(
-        `https://blog-post-project-api.vercel.app/posts/${param.id}`
+        `http://localhost:3000/test/${param.id}`
       );
       setDataPostPage(response.data);
       // console.log(response.data)

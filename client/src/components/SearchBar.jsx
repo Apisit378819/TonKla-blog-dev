@@ -38,13 +38,11 @@ export function SearchBar() {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(
-        `https://blog-post-project-api.vercel.app/posts?limit=${postView}&keyword=${search}`
-      );
-      setPosts(response.data.posts);
+      const response = await axios.get("http://localhost:3000/test");
+      setPosts(response.data);
       // หลังจากดึงข้อมูลจาก Api มาแล้วก็ใช้ setPosts ดึงข้อมูลให้ posts ไปใช้ต่อ
       setLoading(false);
-      console.log(response.data.posts);
+      console.log(response.data);
     } catch (error) {
       console.log(error);
       setLoading(true);
