@@ -1,5 +1,8 @@
+import { NavBar } from "../NavBar";
 export function SignUpFrom() {
   return (
+    <>
+    <NavBar/>
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-screen-sm mx-auto p-6 bg-[#faf9f9] shadow-lg rounded-lg">
         <div className="space-y-6">
@@ -63,5 +66,6 @@ export function SignUpFrom() {
         </div>
       </div>
     </div>
+    </>
   );
 }

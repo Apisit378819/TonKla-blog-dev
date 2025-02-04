@@ -8,6 +8,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/pages/ui/avatar";
 import { Button } from "@/pages/ui/button";
 import { Textarea } from "@/pages/ui/textarea";
 import { Separator } from "@/pages/ui/separator";
+import { NavBar } from "@/components/NavBar";
+import { Footer } from "@/components/Footer";
 
 export function PostPage() {
   const [dataPostpage, setDataPostPage] = useState([]);
@@ -44,7 +46,7 @@ export function PostPage() {
   const fetchPosts = async () => {
     try {
       const response = await axios.get(
-        `https://blog-post-project-api.vercel.app/posts/${param.id}`
+        `http://localhost:3000/test/${param.id}`
       );
       setDataPostPage(response.data);
       // console.log(response.data)
@@ -56,6 +58,7 @@ export function PostPage() {
 
   return (
     <>
+    <NavBar/>
     <div className=" container lg:px-8 mx-auto">
       <img src={dataPostpage.image} alt="" className=" w-full object-cover h-[500px]" />
       <div className=" flex flex-col px-4 py-4">
@@ -170,6 +173,7 @@ export function PostPage() {
         </div>
       </div>
       </div>
+      <Footer/>
     </>
   );
 }

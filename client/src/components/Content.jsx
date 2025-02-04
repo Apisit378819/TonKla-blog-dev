@@ -8,7 +8,7 @@ export function ContentBox({
     viewPostPage,
     DetailsId
   }) {
-    console.log(viewPostPage)
+    // console.log(viewPostPage)
     return (
       <>
           <div className="sm:w-3/4 lg:w-full mx-auto">
