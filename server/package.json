@@ -4,14 +4,14 @@
     "@supabase/supabase-js": "^2.48.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "pg": "^8.13.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
   },
   "scripts": {
-    "start": "nodemon app.mjs",
+    "start": "node app.mjs",
     "dev": "nodemon app.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
