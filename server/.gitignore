@@ -1,0 +1,10 @@
+# Ignore Node Modules
+node_modules/
+package-lock.json
+
+# Ignore Environment Variables
+.env
+
+# Ignore Vercel & Build files
+.vercel/
+dist/
