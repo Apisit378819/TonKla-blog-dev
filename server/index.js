@@ -1,6 +1,9 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 import { supabase } from "./utils/supabase.js";
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -8,15 +11,12 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// 📌 ตรวจสอบว่าเซิร์ฟเวอร์ทำงานปกติ
-app.get("/", (req, res) => {
-  res.send("✅ Backend Server is Running!");
-});
+// ✅ ดึงข้อมูลทั้งหมดจากตาราง `posts`
+app.get("/test", async (req, res) => {
+  const { data, error } = await supabase.from("posts").select("*");
 
-// 📌 API ดึงข้อมูลจาก Supabase
-app.get("/users", async (req, res) => {
-  const { data, error } = await supabase.from("users").select("*");
   if (error) return res.status(500).json({ error: error.message });
+
   res.json(data);
 });
 
