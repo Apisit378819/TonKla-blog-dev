@@ -11,6 +11,10 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("✅ Backend Server is Running!");
+});
+
 // ✅ ดึงข้อมูลทั้งหมดจากตาราง `posts`
 app.get("/test", async (req, res) => {
   const { data, error } = await supabase.from("posts").select("*");

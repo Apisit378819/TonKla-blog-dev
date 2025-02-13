@@ -8,3 +8,4 @@ package-lock.json
 # Ignore Vercel & Build files
 .vercel/
 dist/
+.vercel
