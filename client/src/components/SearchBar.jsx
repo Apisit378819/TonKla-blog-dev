@@ -15,6 +15,8 @@ export function SearchBar() {
   const [postView, setPostView] = useState(6);
   const [search, setSearch] = useState("");
 
+  console.log(posts);
+
   const navigate = useNavigate()
   const viewPostPageClik = (id) => {
     navigate(`/View/${id}`)
@@ -38,11 +40,12 @@ export function SearchBar() {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("https://ton-kla-blog-dev-sever.vercel.app/test");
+      // const response = await axios.get("https://ton-kla-blog-dev-sever.vercel.app/test");
+      const response = await axios.get("http://localhost:3000/test");
       setPosts(response.data);
       // หลังจากดึงข้อมูลจาก Api มาแล้วก็ใช้ setPosts ดึงข้อมูลให้ posts ไปใช้ต่อ
       setLoading(false);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.log(error);
       setLoading(true);
@@ -132,6 +135,7 @@ export function SearchBar() {
                   Detailscategory={item.category}
                   Detailstitle={item.title}
                   DetailsDescription={item.description}
+                  Detailcontent={item.content}
                   Detailsauthor={item.author}
                   Detailsdate={item.date}
                   DetailsId={item.id}
@@ -149,6 +153,7 @@ export function SearchBar() {
                     Detailscategory={item.category}
                     Detailstitle={item.title}
                     DetailsDescription={item.description}
+                    Detailcontent={item.content}
                     Detailsauthor={item.author}
                     Detailsdate={item.date}
                     DetailsId={item.id}

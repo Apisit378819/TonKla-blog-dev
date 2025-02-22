@@ -1,4 +1,18 @@
-export function ContentBox({
+import PropTypes from 'prop-types';
+
+// ✅ เพิ่ม PropTypes เพื่อตรวจสอบค่าที่ถูกส่งเข้ามา
+ContentBox.propTypes = {
+  Detailsimage: PropTypes.string.isRequired,   // ต้องเป็น string และจำเป็นต้องมีค่า
+  Detailscategory: PropTypes.string,
+  Detailstitle: PropTypes.string.isRequired,
+  DetailsDescription: PropTypes.string,
+  Detailsauthor: PropTypes.string,
+  Detailsdate: PropTypes.string,
+  viewPostPage: PropTypes.func.isRequired, // ต้องเป็น function และจำเป็นต้องมีค่า
+  DetailsId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, // อาจเป็น string หรือ number
+};
+
+export function ContentBox({ 
     Detailsimage,
     Detailscategory,
     Detailstitle,
@@ -7,8 +21,8 @@ export function ContentBox({
     Detailsdate,
     viewPostPage,
     DetailsId
-  }) {
-    // console.log(viewPostPage)
+  })
+   {
     return (
       <>
           <div className="sm:w-3/4 lg:w-full mx-auto">
@@ -42,4 +56,8 @@ export function ContentBox({
           </div>
       </>
     );
-  }
+}
+
+
+
+export default ContentBox;
