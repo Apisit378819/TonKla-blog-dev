@@ -28,15 +28,28 @@ app.get("/test", async (req, res) => {
 // console.log("🔍 ENV CHECK: SUPABASE_KEY =", process.env.SUPABASE_KEY ? "✅ Loaded" : "❌ Missing");
 
 app.get("/test/:id", async (req, res) => {
-  const { id } = req.params; // รับค่า id จาก URL
+  const { id } = req.params; 
 
-  // ดึงข้อมูลจาก Supabase โดยใช้ id
-  const { data, error } = await supabase.from("posts").select("*").eq("id", id).single();
+  // ดึงข้อมูลจาก Supabase
+  const { data, error } = await supabase.from("posts").select("content").eq("id", id).single();
 
   if (error || !data) return res.status(404).json({ error: "Post not found" });
 
-  res.json(data);
+  let fixedContent = data.content;
+
+  // ✅ ลองใช้ JSON.parse() ถ้า API ส่ง `\\n`
+  try {
+    fixedContent = JSON.parse(fixedContent);
+  } catch (e) {
+    console.log("🔍 Content is already a normal string");
+  }
+
+  console.log("🔍 Fixed Content:", fixedContent); // ตรวจสอบค่าหลังแปลง
+
+  res.json({ ...data, content: fixedContent });
 });
+
+
 
 
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));

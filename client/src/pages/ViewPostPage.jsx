@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Markdown from "react-markdown";
 import { Toaster, toast } from "sonner";
 import { Facebook, Linkedin, Twitter, Smile, Copy, Check } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/pages/ui/avatar";
@@ -10,11 +9,17 @@ import { Textarea } from "@/pages/ui/textarea";
 import { Separator } from "@/pages/ui/separator";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+
 
 export function PostPage() {
   const [dataPostpage, setDataPostPage] = useState([]);
   const [copied, setCopied] = useState(false);
   const [comment, setComment] = useState("");
+
+  console.log("Markdown Rendered Content:", dataPostpage?.content);
 
   const copyToClipboard = () => {
     const url = window.location.href;
@@ -73,8 +78,15 @@ export function PostPage() {
           </div>
           <h1>{dataPostpage.title}</h1>
           <p>{dataPostpage.description}</p>
-          <div className="markdown">
-            <Markdown>{dataPostpage.content}</Markdown>
+          <div className="ReactMarkdown">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
+              className="prose prose-lg leading-relaxed text-white"
+            >
+              {dataPostpage?.content?.replace(/\\n/g, "\n") ||
+                "No content available"}
+            </ReactMarkdown>
           </div>
           <div>
             <img src="" alt="" className="w-6 h-6 rounded-full" />
