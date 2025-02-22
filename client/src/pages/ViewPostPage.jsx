@@ -51,7 +51,7 @@ export function PostPage() {
   const fetchPosts = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/test/${param.id}`
+        `http://localhost:3000/posts/${param.id}`
       );
       setDataPostPage(response.data);
       // console.log(response.data)
