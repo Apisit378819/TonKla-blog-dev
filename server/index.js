@@ -19,11 +19,24 @@ app.get("/", (req, res) => {
 
 // ✅ ดึงข้อมูลทั้งหมดจากตาราง `posts`
 app.get("/posts", async (req, res) => {
-  const { data, error } = await supabase.from("posts").select("*");
+  try {
+    const { data, error } = await supabase
+      .from("posts")
+      .select(`
+        id, title, image, content, date, category_id, 
+        categories ( name )
+      `); // ✅ JOIN `categories` โดยใช้ `()` ล้อมชื่อ
 
-  if (error) return res.status(500).json({ error: error.message });
+    if (error) {
+      console.error("🔴 Error fetching posts:", error.message);
+      return res.status(500).json({ error: error.message });
+    }
 
-  res.json(data);
+    res.json(data);
+  } catch (err) {
+    console.error("🔴 Server Error:", err.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 // ✅ ดึงข้อมูลเฉพาะ ID

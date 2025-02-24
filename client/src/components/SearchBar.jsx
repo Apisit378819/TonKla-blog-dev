@@ -132,7 +132,7 @@ export function SearchBar() {
                 <div key={item.id}>
                 <ContentBox
                   Detailsimage={item.image}
-                  Detailscategory={item.category}
+                  Detailscategory={item.categories?.name || "Unknown"}
                   Detailstitle={item.title}
                   DetailsDescription={item.description}
                   Detailcontent={item.content}
@@ -150,7 +150,7 @@ export function SearchBar() {
                   <div key={item.id}>
                   <ContentBox
                     Detailsimage={item.image}
-                    Detailscategory={item.category}
+                    Detailscategory={item.categories?.name || "Unknown"}
                     Detailstitle={item.title}
                     DetailsDescription={item.description}
                     Detailcontent={item.content}
